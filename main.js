@@ -71,10 +71,10 @@ camera.position.set(8,5,14)
 
 // SECTION - vereda
 
-const colorVereda = textureLoader.load('./assets/color2.jpg')
-const dispVerdeda = textureLoader.load('./assets/disp2.png')
-const normalVereda = exrLoader.load('./assets/norm2.exr')
-const roughVereda = exrLoader.load('./assets/rough2.exr')
+const colorVereda = textureLoader.load('/assets/color2.jpg')
+const dispVerdeda = textureLoader.load('/assets/disp2.png')
+const normalVereda = exrLoader.load('/assets/norm2.exr')
+const roughVereda = exrLoader.load('/assets/rough2.exr')
 
 const materialVereda = new THREE.MeshStandardMaterial({
     map: colorVereda,
@@ -98,8 +98,8 @@ colorVereda.needsUpdate = true;
 
 // SECTION - piso
 
-const colorTextura = textureLoader.load('./assets/color.jpg') 
-const disp = textureLoader.load('./assets/disp.png') 
+const colorTextura = textureLoader.load('/assets/color.jpg') 
+const disp = textureLoader.load('/assets/disp.png') 
 colorTextura.minFilter = THREE.LinearFilter; 
 colorTextura.magFilter = THREE.LinearFilter;
 colorTextura.generateMipmaps = true
@@ -107,8 +107,8 @@ colorTextura.wrapS = THREE.RepeatWrapping;
 colorTextura.wrapT = THREE.RepeatWrapping;
 colorTextura.repeat.set(7, 7)
 colorTextura.needsUpdate = true;
-const normal = exrLoader.load('./assets/norm.exr')
-const rough = exrLoader.load('./assets/rough.exr')
+const normal = exrLoader.load('/assets/norm.exr')
+const rough = exrLoader.load('/assets/rough.exr')
 
 const materialFloor = new THREE.MeshStandardMaterial({
     map: colorTextura,
@@ -228,7 +228,7 @@ light2.castShadow = true
 // SECTION - modelo GLB
 
 
-gltfLoader.load("./assets/kiosco.glb", (gltf) => {
+gltfLoader.load("/assets/kiosco.glb", (gltf) => {
     const modelo = gltf.scene;
 
     const kiosco = modelo.getObjectByName('cuerpo_quiosco')

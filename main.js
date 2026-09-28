@@ -5,6 +5,8 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { RectAreaLightUniformsLib } from 'three/examples/jsm/lights/RectAreaLightUniformsLib.js';
+import { RectAreaLightHelper } from 'three/examples/jsm/helpers/RectAreaLightHelper.js';
 
 const scene = new THREE.Scene()
 scene.background = new THREE.Color(0x517254)
@@ -145,34 +147,28 @@ scene.add(directionalLight);
 
 // const helper2 = new THREE.DirectionalLightHelper(directionalLight, 2) 
 // scene.add(helper2)
-
 directionalLight.intensity = 0.5
 directionalLight.castShadow = true;
 directionalLight.shadow.mapSize.set(2048, 2048);
 directionalLight.shadow.radius = 1;
 directionalLight.shadow.bias = 0.001 // REVIEW  hace que se vea mas nitido el objeto y que no le genere tantaa sombra con bias y normalBias dentro del mismo objeto
 directionalLight.shadow.normalBias = 0.025
-
 // const axesHelper = new THREE.AxesHelper(15); 
 // scene.add(axesHelper)
 
 // NOTE luz faro
 const streetLight = new THREE.SpotLight(0xffaa55, 50, 25, Math.PI / 3, 0.5, 2);
 streetLight.position.set(5, 5.5, 0); 
-
 streetLight.castShadow = true;
 streetLight.shadow.mapSize.width = 2024;
 streetLight.shadow.mapSize.height = 2024;
 streetLight.shadow.bias = -0.001;
 streetLight.target.position.set(5, 0, 0);
 scene.add(streetLight.target);
-
-
 // const helper3 = new THREE.SpotLightHelper(streetLight, 100)
 // scene.add(helper3)
-
-
 scene.add(streetLight);
+
 // NOTE luz general
 const streetLight2 = new THREE.SpotLight(0xffaa55, 30, 25, Math.PI /4, 1, 2);
 streetLight2.position.set(-1, 5.5, 12); 
@@ -184,13 +180,12 @@ streetLight2.shadow.bias = -0.002;
 streetLight2.target.position.set(-1, 1, 5);
 streetLight2.shadow.radius = 0.2;
 scene.add(streetLight2.target);
-
 // const helperSL2 = new THREE.SpotLightHelper(streetLight2, 1)
 // scene.add(helperSL2)
-
 scene.add(streetLight2);
+
 // NOTE luz general 2
-const streetLight3 = new THREE.SpotLight(0xffaa55, 20, 12, Math.PI / 5, 0.2, 2);
+const streetLight3 = new THREE.SpotLight(0xffaa55, 15, 12, Math.PI / 5, 0.2, 2);
 streetLight3.position.set(5, 5, 7); 
 
 streetLight3.castShadow = true;
@@ -200,14 +195,12 @@ streetLight3.shadow.bias = -0.001;
 streetLight3.target.position.set(2, 2, 5);
 streetLight3.shadow.radius = 3;
 scene.add(streetLight3.target);
-
 // const helperSL3 = new THREE.SpotLightHelper(streetLight3, 1)
 // scene.add(helperSL3)
-
 scene.add(streetLight3);
 
 
-// SECTION - luz de holograma jorgito
+// NOTE - luz de holograma jorgito
 
 const light = new THREE.PointLight( 0xEBE829, 5, 10 );
 light.position.set( 0, 6, 3 );
@@ -224,9 +217,116 @@ light.shadow.bias = -0.001;
 light2.castShadow = true
 
 
+// NOTE - luz cyberpunk edgrunners
+
+RectAreaLightUniformsLib.init(); 
+const intensity = 200; const width = 2; const height = 10;
+const rectLight = new THREE.RectAreaLight( 0xA0AF6B, intensity, width, height );
+rectLight.position.set(-21.7,23,-24.5)
+rectLight.lookAt( -30, 23, -25 );
+scene.add( rectLight )
+// const rectLightHelper = new RectAreaLightHelper(rectLight);
+// scene.add(rectLightHelper);
+rectLight.castShadow = true
+
+
+// NOTE - luz eternauta
+
+const intensity2 = 25; const width2 = 4; const height2 = 10;
+const rectLight2 = new THREE.RectAreaLight( 0xACEFFF, intensity2, width2, height2 );
+rectLight2.position.set(-21.7,23.5,-15)
+rectLight2.lookAt( -30, 23.5, -15 );
+scene.add( rectLight2 )
+// const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
+// scene.add(rectLightHelper2);
+rectLight2.castShadow = true
+
+
+// NOTE - luz marolio
+
+const intensity3 = 30; const width3 = 3; const height3 = 12;
+const rectLight3 = new THREE.RectAreaLight( 0xA0AF6B, intensity3, width3, height3 );
+rectLight3.position.set(-21.7,17.8,-1)
+rectLight3.lookAt( -25, 17.8, -1 );
+scene.add( rectLight3 )
+// const rectLightHelper3 = new RectAreaLightHelper(rectLight3);
+// scene.add(rectLightHelper3);
+rectLight3.castShadow = true
+
+
+// NOTE - luz edificio
+
+const intensity4 = 500; const width4 = 10; const height4 = 3;
+const rectLight4 = new THREE.RectAreaLight( 0xA0AF6B, intensity4, width4, height4 );
+rectLight4.position.set(-21.7,33,-19)
+rectLight4.lookAt( -30, 33,-19 );
+scene.add( rectLight4 )
+// const rectLightHelper4 = new RectAreaLightHelper(rectLight4);
+// scene.add(rectLightHelper4);
+rectLight4.castShadow = true
+
+
+// NOTE - luz edificio2
+
+const intensity5 = 100; const width5 = 18; const height5 = 3;
+const rectLight5 = new THREE.RectAreaLight( 0xA0AF6B, intensity5, width5, height5 );
+rectLight5.position.set(-21.7,27.5,7)
+rectLight5.lookAt( -30, 27.5,7 );
+scene.add( rectLight5 )
+// const rectLightHelper5 = new RectAreaLightHelper(rectLight5);
+// scene.add(rectLightHelper5);
+rectLight5.castShadow = true
+
+
+// NOTE - luz edificio3
+
+const intensity6 = 30; const width6 =10; const height6 = 4;
+const rectLight6 = new THREE.RectAreaLight( 0xA0AF6B, intensity6, width6, height6 );
+rectLight6.position.set(-21.7,21.5,3)
+rectLight6.lookAt( -30, 21.5,3);
+scene.add( rectLight6 )
+// const rectLightHelper6 = new RectAreaLightHelper(rectLight6);
+// scene.add(rectLightHelper6);
+rectLight6.castShadow = true
+
+
+// NOTE - luz edificio4
+
+const intensity7 = 60; const width7 =5; const height7 = 4;
+const rectLight7 = new THREE.RectAreaLight( 0xA0AF6B, intensity7, width7, height7 );
+rectLight7.position.set(-21.7,21.5,4.5)
+rectLight7.lookAt( -30, 21.5,4.5 );
+scene.add( rectLight7 )
+// const rectLightHelper7 = new RectAreaLightHelper(rectLight7);
+// scene.add(rectLightHelper7);
+rectLight7.castShadow = true
+
+
+// NOTE - luz edificio6
+
+const intensity8 = 60; const width8 =5; const height8 = 4;
+const rectLight8 = new THREE.RectAreaLight( 0xA0AF6B, intensity8, width8, height8 );
+rectLight8.position.set(-21.7,21.5,12)
+rectLight8.lookAt( -30, 21.5,12 );
+scene.add( rectLight8 )
+// const rectLightHelper8 = new RectAreaLightHelper(rectLight8);
+// scene.add(rectLightHelper8);
+rectLight8.castShadow = true
+
+// NOTE - luz edificio 7
+
+const intensity9 = 80; const width9 = 10; const height9 = 3;
+const rectLight9 = new THREE.RectAreaLight( 0xA0AF6B, intensity9, width9, height9 );
+rectLight9.position.set(-21.7,14,-20)
+rectLight9.lookAt( -30, 14,-20 );
+scene.add( rectLight9 )
+// const rectLightHelper9 = new RectAreaLightHelper(rectLight9);
+// scene.add(rectLightHelper9);
+rectLight9.castShadow = true
+
+
 
 // SECTION - modelo GLB
-
 
 gltfLoader.load("/assets/kiosco.glb", (gltf) => {
     const modelo = gltf.scene;
@@ -328,7 +428,7 @@ texturas.forEach(tex => {
     bannerEternauta.material.transparent = true;
     bannerEternauta.material.opacity = 0.05
     bannerEternauta.material.emissiveIntensity = 150
-
+    bannerEternauta.position.set(30,35,-32.5)
 
     const bannerEdgerunners = modelo.getObjectByName("banner_edgerunners")
     bannerEdgerunners.material.transparent = true;

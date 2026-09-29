@@ -59,13 +59,13 @@ composer.addPass(bloomPass);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true
 controls.dampingFactor = 0.005
-// controls.enableZoom = false
-// controls.minPolarAngle = 1
-// controls.maxPolarAngle = Math.PI / 1.8
-// controls.minAzimuthAngle = -Math.PI / 75
-// controls.maxAzimuthAngle = Math.PI / 3.5
-// camera.zoom = 1.5
-// camera.updateProjectionMatrix();
+controls.enableZoom = false
+controls.minPolarAngle = 1
+controls.maxPolarAngle = Math.PI / 1.8
+controls.minAzimuthAngle = -Math.PI / 75
+controls.maxAzimuthAngle = Math.PI / 3.5
+camera.zoom = 1.5
+camera.updateProjectionMatrix();
 controls.target.set(-2, 6, 1);
 camera.position.set(8, 5, 14)
 

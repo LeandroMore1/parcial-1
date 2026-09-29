@@ -59,15 +59,15 @@ composer.addPass(bloomPass);
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true
 controls.dampingFactor = 0.005
-controls.enableZoom = false
-controls.minPolarAngle = 1
-controls.maxPolarAngle = Math.PI / 1.8
-controls.minAzimuthAngle = -Math.PI / 75
-controls.maxAzimuthAngle = Math.PI / 3.5
-camera.zoom = 1.5
-camera.updateProjectionMatrix();
+// controls.enableZoom = false
+// controls.minPolarAngle = 1
+// controls.maxPolarAngle = Math.PI / 1.8
+// controls.minAzimuthAngle = -Math.PI / 75
+// controls.maxAzimuthAngle = Math.PI / 3.5
+// camera.zoom = 1.5
+// camera.updateProjectionMatrix();
 controls.target.set(-2, 6, 1);
-camera.position.set(8,5,14)
+camera.position.set(8, 5, 14)
 
 
 
@@ -81,8 +81,8 @@ const roughVereda = exrLoader.load('/assets/rough2.exr')
 const materialVereda = new THREE.MeshStandardMaterial({
     map: colorVereda,
     normalMap: normalVereda,
-    displacementMap: dispVerdeda, 
-    displacementScale: 0.01, 
+    displacementMap: dispVerdeda,
+    displacementScale: 0.01,
     roughnessMap: roughVereda,
     metalness: 0,
     roughness: 0.3
@@ -100,9 +100,9 @@ colorVereda.needsUpdate = true;
 
 // SECTION - piso
 
-const colorTextura = textureLoader.load('/assets/color.jpg') 
-const disp = textureLoader.load('/assets/disp.png') 
-colorTextura.minFilter = THREE.LinearFilter; 
+const colorTextura = textureLoader.load('/assets/color.jpg')
+const disp = textureLoader.load('/assets/disp.png')
+colorTextura.minFilter = THREE.LinearFilter;
 colorTextura.magFilter = THREE.LinearFilter;
 colorTextura.generateMipmaps = true
 colorTextura.wrapS = THREE.RepeatWrapping;
@@ -114,7 +114,7 @@ const rough = exrLoader.load('/assets/rough.exr')
 
 const materialFloor = new THREE.MeshStandardMaterial({
     map: colorTextura,
-    normalMap: normal, 
+    normalMap: normal,
     displacementMap: disp,
     displacementScale: 0.001,
     roughnessMap: rough,
@@ -135,7 +135,7 @@ scene.add(floor)
 
 // SECTION - Iluminacion
 
-const ambientLight = new THREE.HemisphereLight(0x9ED7F6, 0x5f7800, 0.3) 
+const ambientLight = new THREE.HemisphereLight(0x9ED7F6, 0x5f7800, 0.3)
 scene.add(ambientLight)
 // const helper = new THREE.HemisphereLightHelper(ambientLight, 2) 
 // scene.add(helper)
@@ -158,7 +158,7 @@ directionalLight.shadow.normalBias = 0.025
 
 // NOTE luz faro
 const streetLight = new THREE.SpotLight(0xffaa55, 50, 25, Math.PI / 3, 0.5, 2);
-streetLight.position.set(5, 5.5, 0); 
+streetLight.position.set(5, 5.5, 0);
 streetLight.castShadow = true;
 streetLight.shadow.mapSize.width = 2024;
 streetLight.shadow.mapSize.height = 2024;
@@ -170,8 +170,8 @@ scene.add(streetLight.target);
 scene.add(streetLight);
 
 // NOTE luz general
-const streetLight2 = new THREE.SpotLight(0xffaa55, 30, 25, Math.PI /4, 1, 2);
-streetLight2.position.set(-1, 5.5, 12); 
+const streetLight2 = new THREE.SpotLight(0xffaa55, 30, 25, Math.PI / 4, 1, 2);
+streetLight2.position.set(-1, 5.5, 12);
 
 streetLight2.castShadow = true;
 streetLight2.shadow.mapSize.width = 2024;
@@ -186,7 +186,7 @@ scene.add(streetLight2);
 
 // NOTE luz general 2
 const streetLight3 = new THREE.SpotLight(0xffaa55, 15, 12, Math.PI / 5, 0.2, 2);
-streetLight3.position.set(5, 5, 7); 
+streetLight3.position.set(5, 5, 7);
 
 streetLight3.castShadow = true;
 streetLight3.shadow.mapSize.width = 2024;
@@ -202,13 +202,13 @@ scene.add(streetLight3);
 
 // NOTE - luz de holograma jorgito
 
-const light = new THREE.PointLight( 0xEBE829, 5, 10 );
-light.position.set( 0, 6, 3 );
-scene.add( light )
+const light = new THREE.PointLight(0xEBE829, 5, 10);
+light.position.set(0, 6, 3);
+scene.add(light)
 const helper4 = new THREE.PointLightHelper(light, 1)
-const light2 = new THREE.PointLight( 0x3A962B, 1, 10 );
-light2.position.set( 0, 6, 3 );
-scene.add( light2 )
+const light2 = new THREE.PointLight(0x3A962B, 1, 10);
+light2.position.set(0, 6, 3);
+scene.add(light2)
 const helper5 = new THREE.PointLightHelper(light, 1)
 light.castShadow = true
 light.shadow.mapSize.width = 2024;
@@ -219,110 +219,110 @@ light2.castShadow = true
 
 // NOTE - luz cyberpunk edgrunners
 
-RectAreaLightUniformsLib.init(); 
+RectAreaLightUniformsLib.init();
 const intensity = 200; const width = 2; const height = 10;
-const rectLight = new THREE.RectAreaLight( 0xA0AF6B, intensity, width, height );
-rectLight.position.set(-21.7,23,-24.5)
-rectLight.lookAt( -30, 23, -25 );
-scene.add( rectLight )
+const rectLight = new THREE.RectAreaLight(0xA0AF6B, intensity, width, height);
+rectLight.position.set(-21.7, 23, -24.5)
+rectLight.lookAt(-30, 23, -25);
+scene.add(rectLight)
 // const rectLightHelper = new RectAreaLightHelper(rectLight);
 // scene.add(rectLightHelper);
-rectLight.castShadow = true
+
 
 
 // NOTE - luz eternauta
 
 const intensity2 = 25; const width2 = 4; const height2 = 10;
-const rectLight2 = new THREE.RectAreaLight( 0xACEFFF, intensity2, width2, height2 );
-rectLight2.position.set(-21.7,23.5,-15)
-rectLight2.lookAt( -30, 23.5, -15 );
-scene.add( rectLight2 )
+const rectLight2 = new THREE.RectAreaLight(0xACEFFF, intensity2, width2, height2);
+rectLight2.position.set(-21.7, 23.5, -15)
+rectLight2.lookAt(-30, 23.5, -15);
+scene.add(rectLight2)
 // const rectLightHelper2 = new RectAreaLightHelper(rectLight2);
 // scene.add(rectLightHelper2);
-rectLight2.castShadow = true
+
 
 
 // NOTE - luz marolio
 
 const intensity3 = 30; const width3 = 3; const height3 = 12;
-const rectLight3 = new THREE.RectAreaLight( 0xA0AF6B, intensity3, width3, height3 );
-rectLight3.position.set(-21.7,17.8,-1)
-rectLight3.lookAt( -25, 17.8, -1 );
-scene.add( rectLight3 )
+const rectLight3 = new THREE.RectAreaLight(0xA0AF6B, intensity3, width3, height3);
+rectLight3.position.set(-21.7, 17.8, -1)
+rectLight3.lookAt(-25, 17.8, -1);
+scene.add(rectLight3)
 // const rectLightHelper3 = new RectAreaLightHelper(rectLight3);
 // scene.add(rectLightHelper3);
-rectLight3.castShadow = true
+
 
 
 // NOTE - luz edificio
 
 const intensity4 = 500; const width4 = 10; const height4 = 3;
-const rectLight4 = new THREE.RectAreaLight( 0xA0AF6B, intensity4, width4, height4 );
-rectLight4.position.set(-21.7,33,-19)
-rectLight4.lookAt( -30, 33,-19 );
-scene.add( rectLight4 )
+const rectLight4 = new THREE.RectAreaLight(0xA0AF6B, intensity4, width4, height4);
+rectLight4.position.set(-21.7, 33, -19)
+rectLight4.lookAt(-30, 33, -19);
+scene.add(rectLight4)
 // const rectLightHelper4 = new RectAreaLightHelper(rectLight4);
 // scene.add(rectLightHelper4);
-rectLight4.castShadow = true
+
 
 
 // NOTE - luz edificio2
 
 const intensity5 = 100; const width5 = 18; const height5 = 3;
-const rectLight5 = new THREE.RectAreaLight( 0xA0AF6B, intensity5, width5, height5 );
-rectLight5.position.set(-21.7,27.5,7)
-rectLight5.lookAt( -30, 27.5,7 );
-scene.add( rectLight5 )
+const rectLight5 = new THREE.RectAreaLight(0xA0AF6B, intensity5, width5, height5);
+rectLight5.position.set(-21.7, 27.5, 7)
+rectLight5.lookAt(-30, 27.5, 7);
+scene.add(rectLight5)
 // const rectLightHelper5 = new RectAreaLightHelper(rectLight5);
 // scene.add(rectLightHelper5);
-rectLight5.castShadow = true
+
 
 
 // NOTE - luz edificio3
 
-const intensity6 = 30; const width6 =10; const height6 = 4;
-const rectLight6 = new THREE.RectAreaLight( 0xA0AF6B, intensity6, width6, height6 );
-rectLight6.position.set(-21.7,21.5,3)
-rectLight6.lookAt( -30, 21.5,3);
-scene.add( rectLight6 )
+const intensity6 = 30; const width6 = 10; const height6 = 4;
+const rectLight6 = new THREE.RectAreaLight(0xA0AF6B, intensity6, width6, height6);
+rectLight6.position.set(-21.7, 21.5, 3)
+rectLight6.lookAt(-30, 21.5, 3);
+scene.add(rectLight6)
 // const rectLightHelper6 = new RectAreaLightHelper(rectLight6);
 // scene.add(rectLightHelper6);
-rectLight6.castShadow = true
+
 
 
 // NOTE - luz edificio4
 
-const intensity7 = 60; const width7 =5; const height7 = 4;
-const rectLight7 = new THREE.RectAreaLight( 0xA0AF6B, intensity7, width7, height7 );
-rectLight7.position.set(-21.7,21.5,4.5)
-rectLight7.lookAt( -30, 21.5,4.5 );
-scene.add( rectLight7 )
+const intensity7 = 60; const width7 = 5; const height7 = 4;
+const rectLight7 = new THREE.RectAreaLight(0xA0AF6B, intensity7, width7, height7);
+rectLight7.position.set(-21.7, 21.5, 4.5)
+rectLight7.lookAt(-30, 21.5, 4.5);
+scene.add(rectLight7)
 // const rectLightHelper7 = new RectAreaLightHelper(rectLight7);
 // scene.add(rectLightHelper7);
-rectLight7.castShadow = true
+
 
 
 // NOTE - luz edificio6
 
-const intensity8 = 60; const width8 =5; const height8 = 4;
-const rectLight8 = new THREE.RectAreaLight( 0xA0AF6B, intensity8, width8, height8 );
-rectLight8.position.set(-21.7,21.5,12)
-rectLight8.lookAt( -30, 21.5,12 );
-scene.add( rectLight8 )
+const intensity8 = 60; const width8 = 5; const height8 = 4;
+const rectLight8 = new THREE.RectAreaLight(0xA0AF6B, intensity8, width8, height8);
+rectLight8.position.set(-21.7, 21.5, 12)
+rectLight8.lookAt(-30, 21.5, 12);
+scene.add(rectLight8)
 // const rectLightHelper8 = new RectAreaLightHelper(rectLight8);
 // scene.add(rectLightHelper8);
-rectLight8.castShadow = true
+
 
 // NOTE - luz edificio 7
 
 const intensity9 = 80; const width9 = 10; const height9 = 3;
-const rectLight9 = new THREE.RectAreaLight( 0xA0AF6B, intensity9, width9, height9 );
-rectLight9.position.set(-21.7,14,-20)
-rectLight9.lookAt( -30, 14,-20 );
-scene.add( rectLight9 )
+const rectLight9 = new THREE.RectAreaLight(0xA0AF6B, intensity9, width9, height9);
+rectLight9.position.set(-21.7, 14, -20)
+rectLight9.lookAt(-30, 14, -20);
+scene.add(rectLight9)
 // const rectLightHelper9 = new RectAreaLightHelper(rectLight9);
 // scene.add(rectLightHelper9);
-rectLight9.castShadow = true
+
 
 
 
@@ -340,21 +340,21 @@ gltfLoader.load("/assets/kiosco.glb", (gltf) => {
     const aoKiosco = textureLoader.load('/assets/aoMap3.jpg')
     const texturas = [texturaKiosco, roughKiosco, normKiosco, dispKiosco, metalKiosco, aoKiosco];
 
-texturas.forEach(tex => {
-    tex.wrapS = THREE.RepeatWrapping;
-    tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(4, 4);
-    tex.minFilter = THREE.LinearFilter;
-    tex.magFilter = THREE.LinearFilter;
-});
+    texturas.forEach(tex => {
+        tex.wrapS = THREE.RepeatWrapping;
+        tex.wrapT = THREE.RepeatWrapping;
+        tex.repeat.set(4, 4);
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+    });
 
     const miMallaEspecifica = kiosco.children[0];
 
     miMallaEspecifica.material = new THREE.MeshStandardMaterial({
-        map: texturaKiosco, 
+        map: texturaKiosco,
         roughnessMap: roughKiosco,
         normalMap: normKiosco,
-        displacementMap:dispKiosco,
+        displacementMap: dispKiosco,
         roughness: 0.3,
         metalness: 0.1,
         displacementScale: 0.01,
@@ -370,6 +370,106 @@ texturas.forEach(tex => {
     modelo.scale.set(0.65, 0.65, 0.65);
     modelo.rotation.set(0, Math.PI / 2, 0);
     modelo.position.set(0, 0, 5);
+
+    // SECTION - videos
+
+    const manaosVideo = document.createElement('video')
+    manaosVideo.src = "/assets/manaos.mp4"
+    manaosVideo.crossOrigin = 'anonymous';
+    manaosVideo.loop = true;
+    manaosVideo.muted = true;
+    manaosVideo.playsInline = true;
+    manaosVideo.load();
+    manaosVideo.play()
+    const videoTexture = new THREE.VideoTexture(manaosVideo);
+    videoTexture.colorSpace = THREE.SRGBColorSpace;
+
+    const videoMaterial = new THREE.MeshStandardMaterial({
+        map: videoTexture,
+        emissive: 0xffffff,      
+        emissiveMap: videoTexture, 
+        emissiveIntensity: 15
+    });
+
+    const quilmesVideo = document.createElement('video')
+    quilmesVideo.src = "/assets/quilmes.mp4"
+    quilmesVideo.crossOrigin = 'anonymous';
+    quilmesVideo.loop = true;
+    quilmesVideo.muted = true;
+    quilmesVideo.playsInline = true;
+    quilmesVideo.load();
+    quilmesVideo.play()
+    const videoTexture2 = new THREE.VideoTexture(quilmesVideo);
+    videoTexture2.colorSpace = THREE.SRGBColorSpace;
+
+    const videoMaterial2 = new THREE.MeshStandardMaterial({
+        map: videoTexture2,
+        emissive: 0xffffff,      
+    emissiveMap: videoTexture2, 
+    emissiveIntensity: 5
+    });
+
+    const estaticaVideo = document.createElement('video')
+    estaticaVideo.src = "/assets/estatica.mp4"
+    estaticaVideo.crossOrigin = 'anonymous';
+    estaticaVideo.loop = true;
+    estaticaVideo.muted = true;
+    estaticaVideo.playsInline = true;
+    estaticaVideo.load();
+    estaticaVideo.play()
+
+    const videoTexture3 = new THREE.VideoTexture(estaticaVideo);
+    videoTexture3.colorSpace = THREE.SRGBColorSpace;
+
+    const videoMaterial3 = new THREE.MeshStandardMaterial({
+        map: videoTexture3,
+        emissive: 0xffffff,      
+    emissiveMap: videoTexture3, 
+    emissiveIntensity: 100
+    });
+
+    const banelcoVideo = document.createElement('video')
+    banelcoVideo.src = "/assets/banelco.mp4"
+    banelcoVideo.crossOrigin = 'anonymous';
+    banelcoVideo.loop = true;
+    banelcoVideo.muted = true;
+    banelcoVideo.playsInline = true;
+    banelcoVideo.load();
+    banelcoVideo.play()
+
+    const videoTexture4 = new THREE.VideoTexture(banelcoVideo);
+    videoTexture4.colorSpace = THREE.SRGBColorSpace;
+
+    const videoMaterial4 = new THREE.MeshStandardMaterial({
+        map: videoTexture4,
+        emissive: 0xffffff,      
+    emissiveMap: videoTexture4, 
+    emissiveIntensity: 10
+    });
+
+    
+    const mostazaVideo = document.createElement('video')
+    mostazaVideo.src = "/assets/mostaza.mp4"
+    mostazaVideo.crossOrigin = 'anonymous';
+    mostazaVideo.loop = true;
+    mostazaVideo.muted = true;
+    mostazaVideo.playsInline = true;
+    mostazaVideo.load();
+    mostazaVideo.play()
+
+    const videoTexture5 = new THREE.VideoTexture(mostazaVideo);
+    videoTexture5.colorSpace = THREE.SRGBColorSpace;
+
+    const videoMaterial5 = new THREE.MeshStandardMaterial({
+        map: videoTexture5,
+        emissive: 0xffffff,      
+    emissiveMap: videoTexture5, 
+    emissiveIntensity: 10
+    });
+
+
+
+
 
     const holograBajo = modelo.getObjectByName("holograma_abajo001")
     const hologramaArriba = modelo.getObjectByName("holograma_ARRIBA")
@@ -402,17 +502,61 @@ texturas.forEach(tex => {
     hologramaVerde.material.emissive.setHex(0x38CD10);
 
     const hologramaKiosco = modelo.getObjectByName("holograma");
-    hologramaKiosco.material.emissiveIntensity = 300.0;
-    hologramaKiosco.material.emissive.setHex(0xFADF9D);
+    hologramaKiosco.material.emissiveIntensity = 500.0;
+    hologramaKiosco.material.emissive.setHex(0xED5900);
 
     hologramaKiosco.material.transparent = true;
     hologramaKiosco.material.opacity = 0.01
 
+    const tele1 = modelo.getObjectByName("pantalla_tele_1");
+    tele1.children[1].material = videoMaterial
+    videoTexture.center.set(0.5, 0.5);
+    videoTexture.rotation = Math.PI / 2;
+    videoTexture.wrapS = THREE.ClampToEdgeWrapping;
+    videoTexture.wrapT = THREE.ClampToEdgeWrapping;
+    videoTexture.repeat.set(-2,2)
+    videoTexture.offset.set(0.4, 0.6);
 
+    const tele2 = modelo.getObjectByName("pantalla_tele_2")
+    tele2.children[1].material = videoMaterial5
+    videoTexture5.center.set(0.5, 0.5);
+    videoTexture5.rotation = Math.PI / 2;
+    videoTexture5.wrapS = THREE.ClampToEdgeWrapping;
+    videoTexture5.wrapT = THREE.ClampToEdgeWrapping;
+    videoTexture5.repeat.set(-1.5,-1.5)
+    videoTexture5.offset.set(0.3, -0.5);
+
+
+    const tele3 = modelo.getObjectByName("pantalla_tele_3");
+    tele3.children[1].material = videoMaterial3
+    videoTexture3.center.set(0.5, 0.5);
+    videoTexture3.rotation = Math.PI / 2;
+    videoTexture3.wrapS = THREE.ClampToEdgeWrapping;
+    videoTexture3.wrapT = THREE.ClampToEdgeWrapping;
+    videoTexture3.repeat.set(-1.5,1.5)
+    videoTexture3.offset.set(0.3, 0.6);
+
+    const pantallaBanelco = modelo.getObjectByName("pantalla");
+    pantallaBanelco.children[1].material = videoMaterial4
+    videoTexture4.center.set(0.5, 0.5);
+    videoTexture4.rotation = Math.PI / 2;
+    videoTexture4.wrapS = THREE.ClampToEdgeWrapping;
+    videoTexture4.wrapT = THREE.ClampToEdgeWrapping;
+    videoTexture4.repeat.set(-0.8,0.8)
+    videoTexture4.offset.set(0.0, 0);
+    console.log(pantallaBanelco)
+  
     const pantallaGrande = modelo.getObjectByName("pantalla_tele_grande");
-    pantallaGrande.material.emissiveIntensity = 7
+    pantallaGrande.material.emissiveIntensity = 10
     pantallaGrande.material.emissive.setHex(0xF7EBC5);
-
+    pantallaGrande.material = videoMaterial2
+    videoTexture2.center.set(0.5, 0.5);
+    videoTexture2.rotation = Math.PI / 2;
+    videoTexture2.wrapS = THREE.ClampToEdgeWrapping;
+    videoTexture2.wrapT = THREE.ClampToEdgeWrapping;
+    videoTexture2.repeat.set(-1,1)
+    videoTexture2.offset.set(0, 0.23);
+    console.log(pantallaGrande)
 
     const bannerKiosco = modelo.getObjectByName("banner_quiosco");
     bannerKiosco.material.emissiveIntensity = 7
@@ -428,7 +572,7 @@ texturas.forEach(tex => {
     bannerEternauta.material.transparent = true;
     bannerEternauta.material.opacity = 0.05
     bannerEternauta.material.emissiveIntensity = 150
-    bannerEternauta.position.set(30,35,-32.5)
+    bannerEternauta.position.set(30, 35, -32.5)
 
     const bannerEdgerunners = modelo.getObjectByName("banner_edgerunners")
     bannerEdgerunners.material.transparent = true;
@@ -479,7 +623,6 @@ texturas.forEach(tex => {
             child.receiveShadow = true
 
 
-            console.log(child.name) // NOTE aca vemos los nombres que se le asigno a cada objeto en Blender 
         }
     })
 
